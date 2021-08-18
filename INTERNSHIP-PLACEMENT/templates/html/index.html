@@ -1,0 +1,207 @@
+{% load static %}
+{% load student %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link
+      href="{% static 'css/index.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>VIT | Placement Cell</title>
+    <!-- <script src="index.js"></script> -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+    </style>
+  </head>
+
+  <body style="background: url(../static/images/body_bg.png);">
+    <section id="main">
+      <nav>
+        <a href="/" class="logo">
+          <img src="{% static 'images/VITlogo.png' %}" alt="VIT logo" />
+        </a>
+        <ul class="menu">
+          {% if user.is_authenticated %}
+          <li><a href="" class="no-hover">Hi, {{user.username}}</a></li>
+          {% endif %}
+          <li><a href="/">Home</a></li>
+          {% if user.is_authenticated %}
+            {% if user|is_student:suser %}
+              <li><a href="dashboard">Dashboard</a></li>
+            {% else %}
+            {{suser.username}}
+              <li><a href="dashboard/comdashboard">Dashboard</a></li>
+            {% endif %}  
+          <li><a href="logout">Logout</a></li>
+          {% else %}
+          <li><a href="stusignin">Student</a></li>
+          <li><a href="comsignin">Company</a></li>
+          {% endif %}
+          <li><a href="about">About Us</a></li>  
+        </ul>
+      </nav>
+    </section>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'images/naac.png' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/Life at VIT.png' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/celebrity-banner.png' %}" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <!-- <div class="lifeatvit">
+      <img src="{% static 'images/Life at VIT.png' %}">
+    </div> -->
+    <div class="flex">
+      <div class="title">
+        <h1><strong style="color: #f58220">Campus <span style="color: #0d2c44">Recruiters</span></strong></h1>
+      </div>
+      <div class="company">
+        <a target="_blank" href="https://www.tcs.com/"
+          ><img src="{% static 'images/recruitment_logo3.png' %}"
+        /></a>
+        <a target="_blank" href="https://www.capgemini.com/in-en/"
+          ><img src="{% static 'images/recruitment_logo9.png' %}"
+        /></a>
+        <a target="_blank" href="https://www.infosys.com/"
+          ><img src="{% static 'images/recruitment_logo14.png' %}"
+        /></a>
+        <a target="_blank" href="https://aws.amazon.com/"
+          ><img src="{% static 'images/recruitment_logo16.png' %}"
+        /></a>
+        <a target="_blank" href="https://byjus.com/"
+          ><img src="{% static 'images/recruitment_logo17.png' %}"
+        /></a>
+        <a target="_blank" href="https://www.media.net/"
+          ><img src="{% static 'images/recruitment_logo21.png' %}"
+        /></a>
+        <a target="_blank" href="https://www.uniqlo.com/"
+          ><img src="{% static 'images/recruitment_logo23.png' %}"
+        /></a>
+      </div>
+    </div>
+    <div class="info">
+      <p><strong>
+        VIT prioritizes campus recruitment and in a well-defined process, trains
+        and prepares its job aspirants meticulously and ensures that a majority
+        of students are placed at reputed organizations. The institute aims at
+        providing organizations with talent who are an appropriate fit for the
+        corporate world's needs. The Training and Placement Cell, led by a
+        senior and experienced person, has a focused approach on preparing
+        students for recruitment.<br>The institute maintains strong ties with the
+        industry and arranges opportunities for student interactions through
+        industrial visits, guest lectures, internships, conferences and
+        workshops to help them to get a corporate perspective.</strong>
+      </p>
+      <img src="{% static 'images/VITauditorium.jpeg' %}" >
+    </div>
+    <div class="pie-info">
+      <strong class="pie-title" align="center" style="color: #f58220">Company-wise <span style="color: #0d2c44">Placements</span></strong>
+      <strong><p class="info">VIT prioritizes campus recruitment and in a well-defined process, trains and prepares its job aspirants meticulously and ensures that a majority of students are placed at reputed organizations. The institute aims at providing organizations with talent who are an appropriate fit for the corporate world's needs.The Training and Placement Cell, led by a senior and experienced person, has a focused approach on preparing students for recruitment. <br>
+      The institute maintains strong ties with the industry and arranges opportunities for student interactions through industrial visits, guest lectures, internships, conferences and workshops to help them to get a corporate perspective.</p></strong>
+      <div class="pie-chart">
+        <img src="{% static 'images/placement_piechart.png' %}" alt="Pie chart image">
+      </div>
+      <div class="tpo-info">
+        <img src="{% static 'images/tpo.png' %}" alt="TPO image">
+        <div class="tpo-details">
+          <h1 style="color: #f58220">PLACEMENT <span style="color: #0d2c44">OFFICER</span></h1>
+          <h3>Capt. Sachin Sawant</h3>
+          <div class="tpo-icon-top">
+            <span class="tpo-icons"><i class="fa fa-envelope-o" aria-hidden="true"></i></span><span><strong>Email Id : </strong><a href="mailto:sachin.sawant1@vit.edu.in" style="text-decoration: none;color: #f58220">sachin.sawant1@vit.edu.in</a></span>
+          </div>
+          <div class="tpo-icon-top">
+            <span class="tpo-icons"><i class="fa fa-location-arrow" aria-hidden="true"></i></span><span><strong>Office Location : </strong>M102</span>
+          </div>
+          <div class="tpo-icon-top">
+            <span class="tpo-icons"><i class="fa fa-clock-o" aria-hidden="true"></i></span><span><strong>Office Timings : </strong>9:00am to 6:00pm</span>
+          </div>
+          <div class="tpo-icon-top">
+            <span class="tpo-icons"><i class="fa fa-phone" aria-hidden="true"></i></span><span><strong>Telephone Extension : </strong>1801</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  <footer>
+    <div class="container">
+      <div class="sec aboutus">
+        <h2>About us</h2>  
+        <p>
+          Vidyalankar Institute of Technology is an Engineering & Management Institute approved by AICTE, New Delhi and Government of Maharashtra.
+The Institute is affiliated to University of Mumbai.
+        </p>
+        <ul class="sci">
+         <li><a target="_blank" href="https://m.facebook.com/Vidyalankar.VIT/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+         <li><a target="_blank" href="https://www.instagram.com/vit_vidyalankar/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+         <li><a target="_blank" href="https://mobile.twitter.com/VIT_Vidyalankar"><i class="fa fa-twitter" aria-hidden="true"></i></a></li> 
+         <li><a target="_blank" href="https://www.linkedin.com/authwall?trk=ripf&trkInfo=AQGAIgKUDa2pGgAAAXqGWXMYuLFodhWj7MuHYVDM-Ot3Fxijsy3Wyn7lchtyCC87PVi0Cv-qex-v2zOds6yLBke0X9uWlOQBIIfLna2rn0DaeqRx6iL_eYQhpb80xiMX-AIrVZg=&originalReferer=https://vit.edu.in/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fschool%2Fvidyalankar-institute-of-technology-mumbai"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li> 
+         <li><a target="_blank" href="https://youtube.com/channel/UCxRGJGcQw869LJ-btMhPOMA"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>    
+       </ul>
+      </div>
+      <div class="sec contact">
+        <h2>Contact Info</h2>
+        <ul class="con">
+        <li>
+          <span>
+           <i class="fa fa-map-marker" aria-hidden="true"></i>   
+          </span> 
+          <span>
+              Vidyalankar Institute of Technology,<br> Vidyalankar College Marg,<br> Wadala(E), Mumbai-400 037
+          </span> 
+        </li>
+        <li>
+          <span><i class="fa fa-phone" aria-hidden="true"></i></span>    
+          <p><a href="tel:02224161126">02224161126</p>   
+        </li>
+        <li>
+          <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+          <p><a href="mailto:principal@vit.edu.in">principal@vit.edu.in</a></p>
+        </li>
+        </ul>
+      </div>
+    </div>  
+  </footer>
+  <div class="copyrighttext">
+    <p>©2021,All Rights Reserved By Vidyalankar Institute of Technology</p>  
+  </div>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+{% extends "sbase.html" %} {% load static %} {% load student %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>VIT | Placement Cell</title>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  </head>
+  <body>
+    {% block content %}
+    <form class="wrapper" action="stuprofile" method="POST" id="stu_form" onsubmit="return false" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="left">
+        <img
+          src="{{ img.url }}"
+          alt="user"
+          width="100"
+        />
+        <br>
+        <center>
+          <input type="file" id="stuChooseImage" name="stuChooseImage" accept="image/*" hidden>
+        </center>
+        <br>
+        <input
+          type="text"
+          readwrite
+          hidden
+          value="{{ user.username|student_yourname:suser }}"
+          id="student_name_input"
+          name="student_name_input"
+        />
+        <h4 id="student_name_h4">{{ user.username|student_yourname:suser }}</h4>
+        <p>@ {{ user.username }}</p>
+      </div>
+      <div class="right">
+        <h1>PERSONAL DETAILS</h1>
+        <hr />
+        <div class="pd-info">
+          <div class="right-details">
+            <h2>Email</h2>
+            <input
+              type="email"
+              readwrite
+              hidden
+              value="{{ user.username|email:suser }}"
+              id="student_email_input"
+              name="student_email_input"
+            />
+            <h4 id="student_email_h4">{{ user.username|email:suser }}</h4>
+          </div>
+          <div class="right-details">
+            <h2 class="lf-phone">Phone</h2>
+            <input
+              type="phone"
+              readwrite
+              hidden
+              value="{{ user.username|contact:suser }}"
+              id="student_phone_input"
+              name="student_phone_input"
+            />
+            <h4 id="student_phone_h4">{{ user.username|contact:suser }}</h4>
+          </div>
+        </div>
+        <br />
+        <h1>EDUCATION DETAILS</h1>
+        <hr />
+        <div class="pd-info">
+          <div class="right-details">
+            <h2>Branch</h2>
+            <input
+              type="text"
+              readwrite
+              hidden
+              value="{{ user.username|student_branch:suser }}"
+              id="student_branch_input"
+              name="student_branch_input"
+            />
+            <h4 id="student_branch_h4">
+              {{ user.username|student_branch:suser }}
+            </h4>
+          </div>
+          <div class="right-details">
+            <h2 class="lf-phone" style="margin-right: 5px">
+              Year Of Graduation
+            </h2>
+            <input
+              type="number"
+              readwrite
+              hidden
+              value="{{ user.username|yog:suser }}"
+              id="student_yog_input"
+              name="student_yog_input"
+            />
+            <h4 id="student_yog_h4">{{ user.username|yog:suser }}</h4>
+          </div>
+        </div>
+        <div class="pd-info">
+          <button class="form-submit" onclick="makeMeEditable()">Edit</button>
+          <input type="submit" class="form-submit" value="Save" onClick="updateDatabase()" />
+        </div>
+      </form>
+    </div>
+    <script>
+      function makeMeEditable() {
+        let input = document.getElementById("student_name_input");
+        let h4 = document.getElementById("student_name_h4");
+        let stuEmail = document.getElementById("student_email_input");
+        let stuEmailh4 = document.getElementById("student_email_h4");
+        let stuPhone = document.getElementById("student_phone_input");
+        let stuPhoneh4 = document.getElementById("student_phone_h4");
+        let stuBranch = document.getElementById("student_branch_input");
+        let stuBranchh4 = document.getElementById("student_branch_h4");
+        let stuYog = document.getElementById("student_yog_input");
+        let stuYogh4 = document.getElementById("student_yog_h4");
+        let stuChooseImg = document.getElementById("stuChooseImage");
+        stuChooseImg.removeAttribute("hidden");
+        h4.setAttribute("hidden", "true");
+        input.removeAttribute("hidden");
+        stuEmailh4.setAttribute("hidden", "true");
+        stuEmail.removeAttribute("hidden");
+        stuPhoneh4.setAttribute("hidden", "true");
+        stuPhone.removeAttribute("hidden");
+        stuBranchh4.setAttribute("hidden", "true");
+        stuBranch.removeAttribute("hidden");
+        stuYogh4.setAttribute("hidden", "true");
+        stuYog.removeAttribute("hidden");
+      }
+      function updateDatabase() {
+        let comForm = document.getElementById("stu_form")
+        comForm.removeAttribute("onsubmit");
+      }
+    </script>
+    {% endblock %}
+  </body>
+</html>

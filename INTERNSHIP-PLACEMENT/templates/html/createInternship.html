@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"
+  ></script>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+    crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIT| Placement Cell</title>
+  </head>
+  <body style="background: url(../static/images/body_bg.png);">
+    <div id="msg"></div>
+    <div class="main">
+      <section class="signup">
+        <div class="container">
+          <a href="/dashboard/comdashboard" class="back-btn"><button type="button" class="button-back"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></a>
+          <div class="signup-content">
+            <div class="signup-form">
+              <h2 class="form-title" style="color: #0d2c44">Internship</h2>
+              <form
+                method="POST"
+                class="register-form"
+                id="register-form"
+                action="/dashboard/createInternship"
+                enctype="multipart/form-data"
+              >
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="company_name"
+                  ><i
+                    class="zmdi zmdi-account fa fa-user"
+                    area-hidden="true"
+                  ></i
+                ></label>
+                <input
+                  type="text"
+                  name="company_name"
+                  id="company_name"
+                  value="{{ com_name }}"
+                  readonly
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="stipend"
+                  ><i
+                    class="zmdi zmdi-account fa fa-money"
+                    area-hidden="true"
+                  ></i
+                ></label>
+                <input
+                  type="number"
+                  name="stipend"
+                  id="stipend"
+                  placeholder="Stipend(e.g. 10000000)"
+                  autofocus
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="domain"
+                  ><i
+                    class="zmdi zmdi-email fa fa-industry"
+                    area-hidden="true"
+                  ></i
+                ></label>
+                <input
+                  type="text"
+                  name="domain"
+                  id="domain"
+                  placeholder="Domain (e.g. Web Developer)"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="cgpa_req"
+                  ><i
+                    class="zmdi zmdi-email fa fa-graduation-cap"
+                    area-hidden="true"
+                  ></i
+                ></label>
+                <input
+                  type="number"
+                  placeholder="CGPA required"
+                  id="cgpa_req"
+                  name="cgpa_req"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="workduration"
+                  ><i
+                    class="zmdi zmdi-email fa fa-clock-o"
+                    area-hidden="true"
+                  ></i
+                ></label>
+                <input
+                  type="number"
+                  name="workduration"
+                  id="workduration"
+                  placeholder="WorkDuration(in months)"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="modeofwork"
+                  ><i
+                    class="zmdi zmdi-email fa fa-laptop"
+                    area-hidden="true"
+                  ></i
+                ></label>
+                <input
+                  type="text"
+                  name="modeofwork"
+                  id="modeofwork"
+                  placeholder="Mode of Work"
+                  list="modeofworks"
+                  required
+                />
+                <datalist id="modeofworks">
+                    <option>In-Office</option>
+                    <option>Work from Home</option>
+                  </datalist>
+              </div>
+              <div class="form-group">
+                <label for="comimg"
+                  ><i class="zmdi zmdi-email fa fa-image" area-hidden="true"></i
+                ></label>
+                <input
+                  type="file"
+                  name="comimg"
+                  id="comimg"
+                  accept="image/*"
+                  title="Upload Logo"
+                  required
+                  onchange="validate(this)"
+                />
+              </div>
+              <div class="form-group">
+                <label for="company_email"
+                  ><i class="zmdi zmdi-lock fa fa-envelope" area-hidden="true"></i
+                ></label>
+                <input
+                  type="email"
+                  name="company_email"
+                  id="company_email"
+                  value="{{ com_email }}"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="company_phone"
+                  ><i
+                    class="zmdi zmdi-lock-outline fa fa-phone"
+                    area-hidden="true"
+                  ></i
+                ></label>
+                <input
+                  type="text"
+                  name="company_phone"
+                  id="company_phone"
+                  value="{{ com_phone }}"
+                  readonly
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="company_website"
+                  ><i
+                    class="zmdi zmdi-lock-outline fa fa-info-circle"
+                    area-hidden="true"
+                  ></i
+                ></label>
+                <input
+                  type="url"
+                  name="company_website"
+                  id="company_website"
+                  placeholder="Company Website"
+                  required
+                />
+              </div>
+              <div class="form-group form-button">
+                <input
+                  type="submit"
+                  name="signup"
+                  id="signup"
+                  class="form-submit"
+                  value="Create Internship"
+                />
+              </div>
+              <!-- </form> -->
+            </div>
+            <div class="signup-image">
+              <figure>
+                <img
+                  src="{% static 'images/signup-image.jpg' %}"
+                  alt="signup up image"
+                />
+              </figure>
+              <a href="createPlacement" class="signup-image-link">Create Placement</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      function validate(file){
+   var reader = new FileReader();
+
+  reader.readAsDataURL(file.files[0]);
+  reader.onload = function (e) {
+  
+  var image = new Image();
+  image.src = e.target.result;
+  image.onload = function () {
+    var height = this.height;
+    var width = this.width;
+    var message = document.getElementById("msg");
+    if (height>250 && width>250){
+    message.innerHTML = `<div class="alert alert-danger alert-dismissible fade show fixed-top" role="alert">
+      Image resolution should be less than 250x250!
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`;
+  }
+    else{
+      message.innerHTML = `<div class="alert alert-success alert-dismissible fade show fixed-top" role="alert">
+      Image successfully uploaded
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`;
+    }
+  };
+ 
+};
+}
+    </script>
+  </body>
+</html>

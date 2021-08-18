@@ -1,0 +1,114 @@
+{% extends "base.html" %} {% load static %} {% load student %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/studashboard.css' %}" />
+    <title>VIT | Placement Cell</title>
+    <!-- <script src="index.js"></script> -->
+  </head>
+  <body>
+    {% block content %}
+    <div class="all-item">
+      {% for i in iObj %}
+      <div class="com-group">
+        <div class="image-field">
+          <div class="com-img">
+            <img src="{{ i.comimg.url }}" alt="Company Image" />
+          </div>
+          <div class="com-info">
+            <h1>{{ com_name }}</h1>
+            <p>{{i.domain}}</p>
+          </div>
+          <div class="card-type">
+            <p>INTERNSHIP</p>
+          </div>
+        </div>
+        <div class="intern-details">
+          <div class="int-info">
+            <div class="int-h2-info">
+              <p>Stipend</p>
+              <strong>₹ {{ i.stipend }}</strong>
+              <p>Cgpa required</p>
+              <strong>{{ i.cgpa_req }}</strong>
+              <p>Mode of Work</p>
+              <strong>{{ i.modeofwork }}</strong>
+              <p>Work Duration</p>
+              <strong>{{ i.workduration }} months</strong>
+            </div>
+            <div class="int-h2-info">
+              <p>Email</p>
+              <strong>{{ i.company_email }}</strong>
+              <p>Phone</p>
+              <strong>{{ i.company_phone }}</strong>
+              <p>Website</p>
+              <a href="{{ i.company_website }}" target="_blank"
+                ><strong>{{ i.company_website }}</strong></a
+              >
+              {% if i.status %}
+              <p>Application : <b>Approved</b></p>
+              {% else %}
+              <p>Application : <b>Not Approved</b></p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% for p in pObj %}
+      <div class="com-group">
+        <div class="image-field">
+          <div class="com-img">
+            <img src="{{ p.comimg.url }}" alt="Company Image" />
+          </div>
+          <div class="com-info">
+            <h1>{{ com_name }}</h1>
+            <p>{{p.domain}}</p>
+          </div>
+          <div class="card-type">
+            <p>PLACEMENT</p>
+          </div>
+        </div>
+        <div class="intern-details">
+          <div class="int-info">
+            <div class="int-h2-info">
+              <p>Package</p>
+              <strong>₹ {{ p.package }}</strong>
+              <p>Cgpa required</p>
+              <strong>{{ p.cgpa_req }}</strong>
+              <p>Backlog</p>
+              <strong>{{ p.backlog }}</strong>
+            </div>
+            <div class="int-h2-info">
+              <p>Email</p>
+              <strong>{{ p.company_email }}</strong>
+              <p>Phone</p>
+              <strong>{{ p.company_phone }}</strong>
+              <p>Website</p>
+              <a href="{{ p.company_website }}" target="_blank"
+                ><strong>{{ p.company_website }}</strong></a
+              >
+              {% if p.status %}
+              <p>Application : <b>Approved</b></p>
+              {% else %}
+              <p>Application : <b>Not Approved</b></p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,132 @@
+{% extends "sbase.html" %} {% load static %} {% load student %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      href="{% static 'css/studashboard.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>VIT | Placement Cell</title>
+    <!-- <script src="index.js"></script> -->
+  </head>
+  <body>
+    {% block content %}
+    <div class="main-content">
+      <main id="dashboard">
+        <div class="cards">
+          <div class="card-single">
+            <div>
+              <h1>{{ user|stuinternshipcount:iObj }}</h1>
+              <span>Internships</span>
+            </div>
+            <div>
+              <span class="las la-industry"> </span>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div>
+              <h1>{{ user|stuplacementcount:pObj }}</h1>
+              <span>Placements</span>
+            </div>
+            <div>
+              <span class="las la-clipboard-list"> </span>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div>
+              <h1>{{ user|notapplied:0 }}</h1>
+              <span>Not Applied</span>
+            </div>
+            <div>
+              <span class="las la-window-close"> </span>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div>
+              <h1>{{ user|stucount:0 }}</h1>
+              <span>Applied</span>
+            </div>
+            <div>
+              <span class="las la-check-circle"> </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-grid">
+          <div class="projects">
+            <div class="card">
+              <div class="card-header">
+                <h3>Applications</h3>
+
+                <a href="stuall">
+                  See all <span class="las la-arrow-right"> </span>
+                </a>
+              </div>
+
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table width="100%">
+                    <thead>
+                      <tr>
+                        <td>Type</td>
+                        <td>Domain</td>
+                        <td>Status</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in iObj %} {% if i.status %}
+                      <tr>
+                        <td><a href="/dashboard/stuinternship#{{ i.id }}" style="text-decoration: none; color: black">Internship</a></td>
+                        <td>{{i.domain}}</td>
+                        <td>
+                          {% if user|internshipStatus:i.id %}
+                        <span class="green"> Applied</span>
+                        {% else %}
+                         <span class="red"> Not Applied </span>
+                         {% endif %}
+                        </td>
+                      </tr>
+                      {% endif %}{% endfor %}
+                      <!-- Comment -->
+                      {% for p in pObj %}{% if p.status %}
+                      <tr>
+                        <td><a href="/dashboard/stuplacement#{{ p.id }}" style="text-decoration: none; color: black">Placement</a></td>
+                        <td>{{p.domain}}</td>
+                        <td>
+                          {% if user|placementStatus:p.id %}
+                         <span class="green"> Applied</span>
+                          {% else %}
+                        <span class="red"> Not Applied </span>
+                          {% endif %}
+                        </td>
+                      </tr>
+                      {% endif %} {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    {% endblock %}
+  </body>
+</html>

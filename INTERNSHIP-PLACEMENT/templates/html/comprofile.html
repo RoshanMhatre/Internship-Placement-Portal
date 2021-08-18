@@ -1,0 +1,116 @@
+{% extends "base.html" %} {% load static %} {% load student %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>VIT | Placement Cell</title>
+  </head>
+  <body>
+    {% block content %}
+      <form class="wrapper" action="comprofile" method="POST" id="com_form" onsubmit="return false" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="left">
+          <img
+            src="{{ img.url }}"
+            alt="user"
+            width="100"
+          />
+          <br>
+        <center>
+          <input type="file" id="comChooseImage" name="comChooseImage" accept="image/*"  hidden>
+        </center>
+        <br>
+          <h4 id="company_name_h4">{{ user.username|company_name:cuser }}</h4>
+          <p>@ {{ user.username }}</p>
+        </div>
+        <div class="right">
+          <h1>COMPANY DETAILS</h1>
+          <hr />
+          <div class="pd-info">
+            <div class="right-details">
+              <h2>Email</h2>
+              <input
+                type="email"
+                readwrite
+                hidden
+                value="{{ user.username|company_email:cuser }}"
+                id="company_email_input"
+                name="company_email_input"
+              />
+              <h4 id="company_email_h4">
+                {{ user.username|company_email:cuser }}
+              </h4>
+            </div>
+            <div class="right-details">
+              <h2 class="lf-phone">Phone</h2>
+              <input
+                type="phone"
+                readwrite
+                hidden
+                value="{{ user.username|contact:cuser }}"
+                id="company_phone_input"
+                name="company_phone_input"
+              />
+              <h4 id="company_phone_h4">{{ user.username|contact:cuser }}</h4>
+            </div>
+          </div>
+          <br /><br />
+          <div class="pd-info">
+            <div class="right-details">
+              <h2>Address</h2>
+              <input
+                type="text"
+                readwrite
+                hidden
+                value="{{ user.username|address:cuser }}"
+                id="company_address_input"
+                name="company_address_input"
+              />
+              <h4 id="company_address_h4">{{ user.username|address:cuser }}</h4>
+            </div>
+          </div>
+          <div class="pd-info">
+            <button class="form-submit" onClick="makeMeEditable()">Edit</button>
+            <input type="submit" class="form-submit" value="Save" onClick="updateDatabase()" />
+          </div>
+        </form>
+    </div>
+    <script>
+      function makeMeEditable() {
+        let comEmailInput = document.getElementById("company_email_input");
+        let comEmailh4 = document.getElementById("company_email_h4");
+        let comPhoneInput = document.getElementById("company_phone_input");
+        let comPhoneh4 = document.getElementById("company_phone_h4");
+        let comAddressInput = document.getElementById("company_address_input");
+        let comAddressh4 = document.getElementById("company_address_h4");
+        let comForm = document.getElementById("com_form");
+        let comChooseImg = document.getElementById("comChooseImage");
+        comChooseImg.removeAttribute("hidden");
+        comEmailh4.setAttribute("hidden", "true");
+        comEmailInput.removeAttribute("hidden");
+        comPhoneh4.setAttribute("hidden", "true");
+        comPhoneInput.removeAttribute("hidden");
+        comAddressh4.setAttribute("hidden", "true");
+        comAddressInput.removeAttribute("hidden");
+        comForm.setAttribute("onsubmit","return false");
+      }
+    
+      function updateDatabase() {
+        let comForm = document.getElementById("com_form")
+        comForm.removeAttribute("onsubmit");
+      }
+    </script>
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+
+    <link
+      href="{% static 'css/studashboard.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>VIT | Placement Cell</title>
+    <!-- <script src="index.js"></script> -->
+  </head>
+  <body style="background: url(../static/images/body_bg.png)">
+    <input type="checkbox" id="nav-toggle" />
+    <div class="sidebar">
+      <div class="sidebar-brand">
+        <h2>
+          <span class="las la-burn"></span>
+          <span
+            ><a href="/" style="text-decoration: none; color: white"
+              >VIT, Mumbai</a
+            ></span
+          >
+        </h2>
+      </div>
+
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <a href="comdashboard" class="active"
+              ><span class="las la-igloo"></span> <span>Dashboard</span></a
+            >
+          </li>
+          <li>
+            <a href="comprofile" id="profile"
+              ><span class="las la-users"></span> <span>Profile</span></a
+            >
+          </li>
+          <li>
+            <a href="complacement"
+              ><span class="las la-clipboard-list"></span>
+              <span>Placements</span></a
+            >
+          </li>
+          <li>
+            <a href="cominternship"
+              ><span class="las la-industry"></span> <span>Internships</span></a
+            >
+          </li>
+          <li>
+            <a href="comall"
+              ><span class="las la-layer-group"></span> <span>All</span></a
+            >
+          </li>
+          <li>
+            <a href="/logout"
+              ><span class="las la-user-circle"></span> <span>Logout</span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <header>
+        <h2>
+          <label for="nav-toggle">
+            <span class="las la-bars"></span>
+          </label>
+          Dashboard
+        </h2>
+        <div class="user-wrapper">
+          <img
+            src="{% static 'images/VITlogo.png' %}"
+            width="40px"
+            height="40px"
+            alt="VIT logo"
+          />
+          <div>
+            <h4>Hi, {{user.username}}</h4>
+          </div>
+        </div>
+        <div class="create-top">
+          <button class="create-btn">
+            <i class="zmdi zmdi-account fa fa-plus" area-hidden="true"></i>
+          </button>
+          <div class="drop-list">
+            <ul>
+              <li>
+                <a href="createInternship" title="Create Internship"
+                  >Internship</a
+                >
+              </li>
+              <li>
+                <a href="createPlacement" title="Create Placement">Placement</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+    </div>
+    {% block content %} {% endblock %}
+  </body>
+</html>

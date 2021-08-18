@@ -1,0 +1,134 @@
+{% extends "base.html" %} {% load static %} {% load student %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      href="{% static 'css/comdashboard.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>VIT | Placement Cell</title>
+    <!-- <script src="index.js"></script> -->
+  </head>
+  <body>
+    {% block content %}
+    <div class="main-content">
+      <main id="dashboard">
+        <div class="cards">
+          <div class="card-single">
+            <div>
+              <h1>{{ user|cominternshipcount:iObj }}</h1>
+              <span>Internships</span>
+            </div>
+            <div>
+              <span class="las la-industry"> </span>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div>
+              <h1>{{ user|complacementcount:pObj }}</h1>
+              <span>Placements</span>
+            </div>
+            <div>
+              <span class="las la-clipboard-list"> </span>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div>
+              <h1>{{ iObj|notapprovecom:pObj }}</h1>
+              <span>Not Approved</span>
+            </div>
+            <div>
+              <span class="las la-window-close"> </span>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div>
+              <h1>{{ iObj|approvecom:pObj }}</h1>
+              <span>Approved</span>
+            </div>
+            <div>
+              <span class="las la-check-circle"> </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-grid">
+          <div class="projects">
+            <div class="card">
+              <div class="card-header">
+                <h3>Applications</h3>
+
+                <a href="comall">
+                  See all <span class="las la-arrow-right"> </span>
+                </a>
+              </div>
+
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table width="100%">
+                    <thead>
+                      <tr>
+                        <td>Type</td>
+                        <td>Domain</td>
+                        <td>Status</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in iObj %}
+                      <tr>
+                        <td><a href="/dashboard/cominternship#{{ i.id }}" style="text-decoration: none; color: black">Internship</td>
+                        <td>{{i.domain}}</td>
+                        {% if i.status %}
+                        <td>
+                          <span class="green"> Approved </span>
+                        </td>
+                        {% else %}
+                        <td>
+                          <span class="red"> Not Approved </span>
+                        </td>
+                        {% endif %}
+                      </tr>
+                      {% endfor %} {% for p in pObj %}
+                      <tr>
+                        <td><a href="/dashboard/complacement#{{ p.id }}" style="text-decoration: none; color: black">Placement</td>
+                        <td>{{p.domain}}</td>
+                        {% if p.status %}
+                        <td>
+                          <span class="green"> Approved </span>
+                        </td>
+                        {% else %}
+                        <td>
+                          <span class="red"> Not Approved </span>
+                        </td>
+                        {% endif %}
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    {% endblock %}
+  </body>
+</html>

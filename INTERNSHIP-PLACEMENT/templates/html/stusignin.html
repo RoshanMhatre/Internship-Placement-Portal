@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIT| SignIn</title>
+  </head>
+  <body style="background: url(../static/images/body_bg.png)">
+    <div id="msg"></div>
+    <div class="main">
+      <section class="sign-in">
+        <div class="container">
+          <a href="/" class="back-btn"
+            ><button type="button" class="button-back">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i></button
+          ></a>
+          <div class="signin-content">
+            <div class="signin-image">
+              <figure>
+                <img
+                  src="{% static 'images/signin-image.jpg' %}"
+                  alt="sing up image"
+                />
+              </figure>
+              <a href="stusignup" class="signup-image-link"
+                >Create an account</a
+              >
+            </div>
+            <div class="signin-form">
+              <h2 class="form-title" style="color: #0d2c44">Student SignIn</h2>
+              <form
+                method="POST"
+                class="register-form"
+                id="login-form"
+                action="stusignin"
+              >
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="your_name"
+                    ><i
+                      class="zmdi zmdi-account fa fa-user"
+                      aria-hidden="true"
+                    ></i
+                  ></label>
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="Username"
+                    autofocus
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password"
+                    ><i class="zmdi zmdi-lock fa fa-lock" aria-hidden="true"></i
+                  ></label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+
+                <div class="form-group form-button">
+                  <input
+                    type="submit"
+                    name="signin"
+                    id="signin"
+                    class="form-submit"
+                    value="Sign In"
+                  />
+                </div>
+              </form>
+              <br />
+              <a
+                href="/password_reset"
+                class="signup-image-link"
+                style="text-align: left"
+                >Forgot Password?</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    {% if mess %}
+    <script>
+      window.onload = function () {
+        var message = document.getElementById("msg");
+        message.innerHTML = `<div class="alert alert-danger alert-dismissible fade show fixed-top" role="alert">
+      <strong> Error!!: </strong>{{ mess }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`;
+      };
+    </script>
+    {% endif %}
+  </body>
+</html>

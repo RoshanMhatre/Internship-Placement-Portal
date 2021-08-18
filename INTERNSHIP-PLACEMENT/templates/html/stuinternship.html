@@ -1,0 +1,107 @@
+{% extends "sbase.html" %} {% load static %} {% load student %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="{% static 'css/studashboard.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>VIT | Placement Cell</title>
+    <!-- <script src="index.js"></script> -->
+  </head>
+  <body>
+    {% block content %}
+    <div class="all-item">
+      {% for i in iObj %} {% if i.status %}
+      <div class="com-group" id={{i.id}}>
+        <div class="image-field">
+          <div class="com-img">
+            <img src="{{ i.comimg.url }}" alt="Company Image" />
+          </div>
+          <div class="com-info">
+            <h1>{{ i.company_name }}</h1>
+            <p>{{i.domain}}</p>
+          </div>
+          <div class="card-type">
+            <p>INTERNSHIP</p>
+          </div>
+        </div>
+        <div class="intern-details">
+          <div class="int-info">
+            <div class="int-h2-info">
+              <p>Stipend</p>
+              <strong>₹ {{ i.stipend }}</strong>
+              <p>Cgpa required</p>
+              <strong>{{ i.cgpa_req }}</strong>
+              <p>Mode of Work</p>
+              <strong>{{ i.modeofwork }}</strong>
+              <p>Work Duration</p>
+              <strong>{{ i.workduration }} months</strong>
+            </div>
+            <div class="int-h2-info">
+              <p>Email</p>
+              <strong>{{ i.company_email }}</strong>
+              <p>Phone</p>
+              <strong>{{ i.company_phone }}</strong>
+              <p>Website</p>
+              <a href="{{ i.company_website }}" target="_blank"
+                ><strong>{{ i.company_website }}</strong></a
+              >
+              {% if user|pendingintern:i.id %} {% if user|internshipStatus:i.id %}
+          <div class="apply">
+            <button class="form-submit_2" disabled>Applied!</button>
+          </div>
+          {% else %}
+          <div class="apply">
+            <a href="{{ i.regform_link }}" target="_blank">
+              <button class="form-submit_1">Pending</button>
+            </a>
+          </div>
+          {% endif %} 
+              {% else %}
+              <div class="apply">
+                <form
+                  method="POST"
+                  class="register-form"
+                  id="login-form"
+                  action="/dashboard/regFormInternship"
+                >
+                  {% csrf_token %}
+                  <input type="text" value="{{ i.id }}" hidden name="getiid" />
+                  <div class="apply">
+                    <a href="{{ i.regform_link }}" target="_blank">
+                      <button class="form-submit" onclick="popMessage()">
+                        Apply
+                      </button>
+                    </a>
+                  </div>
+                </form>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    <script>
+      function popMessage() {
+        alert("Please reload the site to see the changes!");
+      }
+    </script>
+    {% endblock %}
+  </body>
+</html>

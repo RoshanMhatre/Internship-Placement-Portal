@@ -1,0 +1,218 @@
+{% load static %}
+{% load student %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/VITlogo.png' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      href="{% static 'css/aboutus.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>VIT | Placement Cell</title>
+    <!-- <script src="index.js"></script> -->
+  </head>
+  <body style="background: url(../static/images/body_bg.png);">
+    <section id="main">
+      <nav>
+        <a href="/" class="logo">
+          <img src="{% static 'images/VITlogo.png' %}" alt="VIT logo" />
+        </a>
+        <style>
+          @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+        </style>
+        <ul class="menu">
+          {% if user.is_authenticated %}
+          <li><a href="" class="no-hover">Hi, {{user.username}}</a></li>
+          {% endif %}
+          <li><a href="/">Home</a></li>
+          {% if user.is_authenticated %}
+            {% if user|is_student:suser %}
+              <li><a href="dashboard">Dashboard</a></li>
+            {% else %}
+            {{suser.username}}
+              <li><a href="dashboard/comdashboard">Dashboard</a></li>
+            {% endif %}  
+          <li><a href="logout">Logout</a></li>
+          {% else %}
+          <li><a href="stusignin">Student</a></li>
+          <li><a href="comsignin">Company</a></li>
+          {% endif %}
+          <li><a href="about">About Us</a></li>  
+        </ul>
+      </nav>
+    </section>
+     <div class="card">
+        <div class="content">
+          <img src="{% static 'images/siddhesh.jpg' %}" />
+          <div class="details">
+            <p>
+              HELLO EVERYBODY, I AM 
+              <p id="name">SIDDHESH WANI</p>
+              <p id="skill">JUNIOR WEB DEVELOPER</p>
+              Pursuing IT Engineering 2019-23 (VIT,Mumbai)
+            </p>
+             <ul class="con">
+                <li>
+                    <span><i class="fa fa-calendar" aria-hidden="true"></i></span>    
+                    <span> 28th November, 2001 </span>   
+                  </li>
+                  <li>
+          <span>
+           <i class="fa fa-map-marker" aria-hidden="true"></i>   
+          </span> 
+          <span>
+              A-302,Sai Sitaram Residency, Bhoirwadi,<br> Kalyan(W), Thane-421 301
+          </span> 
+        </li>
+        <li>
+          <span><i class="fa fa-phone" aria-hidden="true"></i></span>    
+          <p><a href="tel:+918169097015">+918169097015</p>   
+        </li>
+        <li>
+          <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+          <p><a href="mailto:wani.siddhesh.siddhesh2@gmail.com">wani.siddhesh.siddhesh2@gmail.com</a></p>
+        </li>
+        </ul>
+        <ul class="sci">
+            <li><a target="_blank" href="https://www.facebook.com/siddhesh.wani.1/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+            <li><a target="_blank" href="https://www.instagram.com/siddhesh_2801/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+            <li><a target="_blank" href="https://github.com/Siddhesh2811"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+           </ul>
+          </div>
+        </div>
+    </div>
+    <div class="card">
+      <div class="content">
+        <img src="{% static 'images/yashmistry.jpg' %}" />
+        <div class="details">
+          <p>
+            HELLO EVERYBODY, I AM 
+            <p id="name">YASH MISTRY</p>
+            <p id="skill">JUNIOR WEB DEVELOPER</p>
+            Pursuing IT Engineering 2019-23 (VIT,Mumbai)
+          </p>
+           <ul class="con">
+              <li>
+                  <span><i class="fa fa-calendar" aria-hidden="true"></i></span>    
+                  <span> 25th August, 2001 </span>   
+                </li>
+                <li>
+        <span>
+         <i class="fa fa-map-marker" aria-hidden="true"></i>   
+        </span> 
+        <span>
+            B2/5,Bajrangi Chawl,Ganesh Nagar<br> Dahisar(E), Mumbai-400 068
+        </span> 
+      </li>
+      <li>
+        <span><i class="fa fa-phone" aria-hidden="true"></i></span>    
+        <p><a href="tel:+918291662688">+918291662688</p>   
+      </li>
+      <li>
+        <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+        <p><a href="mailto:yashmistry121@gmail.com">yashmistry121@gmail.com</a></p>
+      </li>
+      </ul>
+      <ul class="sci">
+          <li><a target="_blank" href="https://www.facebook.com/yash.mistry.581"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+          <li><a target="_blank" href="https://www.instagram.com/yashms25/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+          <li><a target="_blank" href="https://github.com/yashms25"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+         </ul>
+        </div>
+      </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <img src="{% static 'images/roshan.jpg' %}" />
+      <div class="details">
+        <p>
+          HELLO EVERYBODY, I AM 
+          <p id="name">ROSHAN MHATRE</p>
+          <p id="skill">JUNIOR WEB DEVELOPER</p>
+          Pursuing IT Engineering 2019-23 (VIT,Mumbai)
+        </p>
+         <ul class="con">
+            <li>
+                <span><i class="fa fa-calendar" aria-hidden="true"></i></span>    
+                <span> 25th February, 2002 </span>   
+              </li>
+              <li>
+      <span>
+       <i class="fa fa-map-marker" aria-hidden="true"></i>   
+      </span> 
+      <span>
+          Shanti Niketan House,TataPower,Pisavli Gaon<br> Kalyan(E), Thane - 421 306
+      </span> 
+    </li>
+    <li>
+      <span><i class="fa fa-phone" aria-hidden="true"></i></span>    
+      <p><a href="tel:+919892647513">+919892647513</p>   
+    </li>
+    <li>
+      <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+      <p><a href="mailto:roshanmhatre989@gmail.com">roshanmhatre989@gmail.com</a></p>
+    </li>
+    </ul>
+    <ul class="sci">
+        <li><a target="_blank" href="https://m.facebook.com/100009895207756/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+        <li><a target="_blank" href="https://www.instagram.com/mr_rdm_/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a target="_blank" href="https://github.com/RoshanMhatre"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+       </ul>
+      </div>
+    </div>
+</div>
+  <div class="card">
+    <div class="content">
+      <img src="{% static 'images/nilabh.jpg' %}" />
+      <div class="details">
+        <p>
+          HELLO EVERYBODY, I AM 
+          <p id="name">NILABH WAINGANKAR</p>
+          <p id="skill">JUNIOR WEB DEVELOPER</p>
+          Pursuing IT Engineering 2019-23 (VIT,Mumbai)
+        </p>
+         <ul class="con">
+            <li>
+                <span><i class="fa fa-calendar" aria-hidden="true"></i></span>    
+                <span> 21st June, 2001 </span>   
+              </li>
+              <li>
+      <span>
+       <i class="fa fa-map-marker" aria-hidden="true"></i>   
+      </span> 
+      <span>
+          C-712, Raj Shivram CHS<br>Dahisar(E), Mumbai - 400 068
+      </span> 
+    </li>
+    <li>
+      <span><i class="fa fa-phone" aria-hidden="true"></i></span>    
+      <p><a href="tel:+918668523339">+918668523339</p>   
+    </li>
+    <li>
+      <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+      <p><a href="mailto:nilabhwaingankar59@gmail.com">nilabhwaingankar59@gmail.com</a></p>
+    </li>
+    </ul>
+    <ul class="sci">
+        <li><a target="_blank" href="https://www.facebook.com/profile.php?id=100007098726062"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+        <li><a target="_blank" href="https://www.instagram.com/Nilabhwaingankar/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a target="_blank" href="https://github.com/NilabhWaingankar59"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+       </ul>
+      </div>
+    </div>
+</div>
+  </body>
+</html>
