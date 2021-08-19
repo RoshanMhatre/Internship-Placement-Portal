@@ -4,8 +4,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="icon"
       type="image/png"
@@ -15,14 +13,26 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
     <link
-      href="{% static 'css/aboutus.css' %}"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link
+      href="{% static 'css/index.css' %}"
       rel="stylesheet"
       type="text/css"
     />
     <title>VIT | Placement Cell</title>
-    <!-- <script src="index.js"></script> -->
+        <style>
+          @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+        </style>
   </head>
   <body style="background: url(../static/images/body_bg.png);">
     <section id="main">
@@ -30,9 +40,6 @@
         <a href="/" class="logo">
           <img src="{% static 'images/VITlogo.png' %}" alt="VIT logo" />
         </a>
-        <style>
-          @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
-        </style>
         <ul class="menu">
           {% if user.is_authenticated %}
           <li><a href="" class="no-hover">Hi, {{user.username}}</a></li>
@@ -86,7 +93,7 @@
           <p><a href="mailto:wani.siddhesh.siddhesh2@gmail.com">wani.siddhesh.siddhesh2@gmail.com</a></p>
         </li>
         </ul>
-        <ul class="sci">
+        <ul class="sci_1">
             <li><a target="_blank" href="https://www.facebook.com/siddhesh.wani.1/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
             <li><a target="_blank" href="https://www.instagram.com/siddhesh_2801/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
             <li><a target="_blank" href="https://github.com/Siddhesh2811"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
@@ -126,7 +133,7 @@
         <p><a href="mailto:yashmistry121@gmail.com">yashmistry121@gmail.com</a></p>
       </li>
       </ul>
-      <ul class="sci">
+      <ul class="sci_1">
           <li><a target="_blank" href="https://www.facebook.com/yash.mistry.581"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
           <li><a target="_blank" href="https://www.instagram.com/yashms25/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
           <li><a target="_blank" href="https://github.com/yashms25"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
@@ -166,7 +173,7 @@
       <p><a href="mailto:roshanmhatre989@gmail.com">roshanmhatre989@gmail.com</a></p>
     </li>
     </ul>
-    <ul class="sci">
+    <ul class="sci_1">
         <li><a target="_blank" href="https://m.facebook.com/100009895207756/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
         <li><a target="_blank" href="https://www.instagram.com/mr_rdm_/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
         <li><a target="_blank" href="https://github.com/RoshanMhatre"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
@@ -206,7 +213,7 @@
       <p><a href="mailto:nilabhwaingankar59@gmail.com">nilabhwaingankar59@gmail.com</a></p>
     </li>
     </ul>
-    <ul class="sci">
+    <ul class="sci_1">
         <li><a target="_blank" href="https://www.facebook.com/profile.php?id=100007098726062"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
         <li><a target="_blank" href="https://www.instagram.com/Nilabhwaingankar/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
         <li><a target="_blank" href="https://github.com/NilabhWaingankar59"><i class="fa fa-github" aria-hidden="true"></i></a></li> 

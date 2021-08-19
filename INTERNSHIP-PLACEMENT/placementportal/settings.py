@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ekwebkr7*39j&=&vz@u!m=w3zj+n1bpjii2m9xvxo0i8556%5%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -136,4 +136,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = "/Images/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'Images/')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'yashmistry614@gmail.com'
+EMAIL_HOST_PASSWORD = 'pxcpeccmvruzjhim'

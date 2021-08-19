@@ -145,13 +145,19 @@ a {
 .info {
   display: flex;
   justify-content: space-around;
+  flex-direction: column-reverse;
   padding: 30px;
   align-self: center;
   color: #0f2c44;
   font-size: 1.5em;
 }
 .info img {
-  height: 300px;
+  border: 1px solid grey;
+  width: auto;
+  margin: auto;
+  height: auto;
+  border-radius: 1em;
+  margin-bottom: 1em;
 }
 footer {
   position: relative;
@@ -325,4 +331,111 @@ footer p {
 .tpo-icon-top {
   display: flex;
   align-items: center;
+}
+
+.card {
+  margin: 50px;
+  border-radius: 20px;
+  box-shadow: 5px 10px 30px rgba(13, 44, 68, 0.25);
+}
+
+.con li {
+  align-items: center;
+  display: flex;
+  margin-bottom: 16px;
+}
+.fa {
+  color: #0d2c44;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.con li span {
+  color: #0d2c44;
+}
+
+.con li a {
+  color: #0d2c44;
+  text-decoration: none;
+}
+
+.con li a:hover {
+  font-size: 1.2em;
+  transition: all ease 0.3s;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  padding: 40px 10px;
+}
+
+.content img {
+  width: 40%;
+  border-radius: 10px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 30px;
+}
+
+#name {
+  font-weight: bold;
+  font-size: 1.9em;
+  margin: 0px;
+}
+
+.sci_1 {
+  margin-top: 20px;
+  display: flex;
+}
+
+.sci_1 li {
+  list-style: none;
+}
+
+.sci_1 li a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.sci_1 li a i {
+  transform: scale(1.3);
+}
+
+.sci_1 li a i:hover {
+  transform: scale(1.5);
+  transition: all ease 0.3s;
+}
+
+#skill {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 1200px) {
+  .info {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .info img {
+    width: auto;
+    margin: auto;
+    height: auto;
+    border-radius: 1em;
+    margin-bottom: 1em;
+  }
 }
