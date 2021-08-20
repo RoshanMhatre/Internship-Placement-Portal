@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap");
 :root {
   --main-color: #0d2c44;
   --color-dark: #1d2231;
@@ -11,7 +11,7 @@
   box-sizing: border-box;
   list-style-type: none;
   text-decoration: none;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .sidebar {
@@ -172,7 +172,6 @@ header label span {
 main {
   margin-top: 90px;
   padding: 2rem 1.5rem;
-  background: #f1f5f9;
   min-height: calc(100vh - 90px);
 }
 
@@ -186,9 +185,10 @@ main {
 .card-single {
   display: flex;
   justify-content: space-between;
-  background: #fff;
   padding: 2rem;
-  border-radius: 2px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.4);
 }
 
 .card-single div:last-child span {
@@ -215,13 +215,14 @@ main {
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: 100%;
+  background: white;
+  box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.4);
 }
 .projects {
   width: 100%;
 }
 
 .card {
-  background: #fff;
   border-radius: 5px;
 }
 
@@ -523,7 +524,6 @@ tr td:last-child {
 
 .wrapper .right {
   width: 65%;
-  background: #fff;
   padding: 30px 25px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
