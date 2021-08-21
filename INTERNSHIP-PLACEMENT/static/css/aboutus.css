@@ -76,6 +76,7 @@ a {
   margin: 50px;
   border-radius: 20px;
   box-shadow: 5px 10px 30px rgba(13, 44, 68, 0.25);
+  background: none;
 }
 
 .con li {
