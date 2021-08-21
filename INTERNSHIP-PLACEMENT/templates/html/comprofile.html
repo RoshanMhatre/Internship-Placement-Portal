@@ -27,12 +27,12 @@
             width="100"
           />
           <br>
-        <center>
           <input type="file" id="comChooseImage" name="comChooseImage" accept="image/*"  hidden>
-        </center>
+          <div class="left-details">
         <br>
           <h4 id="company_name_h4">{{ user.username|company_name:cuser }}</h4>
           <p>@ {{ user.username }}</p>
+        </div>
         </div>
         <div class="right">
           <h1>COMPANY DETAILS</h1>
@@ -81,8 +81,8 @@
             </div>
           </div>
           <div class="pd-info">
-            <button class="form-submit" onClick="makeMeEditable()">Edit</button>
-            <input type="submit" class="form-submit" value="Save" onClick="updateDatabase()" />
+            <button class="form-submit" id="edit" onClick="makeMeEditable()">Edit</button>
+            <input type="submit" id="save" class="form-submit" value="Save" onClick="updateDatabase()" hidden="true"/>
           </div>
         </form>
     </div>
@@ -96,6 +96,10 @@
         let comAddressh4 = document.getElementById("company_address_h4");
         let comForm = document.getElementById("com_form");
         let comChooseImg = document.getElementById("comChooseImage");
+        let save = document.getElementById("save");
+        let edit = document.getElementById("edit");
+        save.removeAttribute("hidden");
+        edit.setAttribute("hidden", "true");
         comChooseImg.removeAttribute("hidden");
         comEmailh4.setAttribute("hidden", "true");
         comEmailInput.removeAttribute("hidden");

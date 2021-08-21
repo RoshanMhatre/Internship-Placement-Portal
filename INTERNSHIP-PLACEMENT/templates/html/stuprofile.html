@@ -22,30 +22,30 @@
     <form class="wrapper" action="stuprofile" method="POST" id="stu_form" onsubmit="return false" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="left">
-        <img
+          <img
           src="{{ img.url }}"
           alt="user"
-        />
-        <br>
-        <center>
+          />
+          <br>
           <input type="file" id="stuChooseImage" name="stuChooseImage" accept="image/*" hidden>
-        </center>
-        <br>
-        <input
+        <div class="left-details">
+          <br>
+          <input
           type="text"
           readwrite
           hidden
           value="{{ user.username|student_yourname:suser }}"
           id="student_name_input"
           name="student_name_input"
-        />
-        <h4 id="student_name_h4">{{ user.username|student_yourname:suser }}</h4>
-        <p>@ {{ user.username }}</p>
+          />
+          <h4 id="student_name_h4">{{ user.username|student_yourname:suser }}</h4>
+          <p>@ {{ user.username }}</p>
+        </div>
       </div>
       <div class="right">
         <h1>PERSONAL DETAILS</h1>
         <hr />
-        <div class="pd-info right_1">
+        <div class="pd-info right_1 right_960">
           <div class="right-details">
             <h2>Email</h2>
             <input
@@ -105,8 +105,8 @@
           </div>
         </div>
         <div class="pd-info">
-          <button class="form-submit" onclick="makeMeEditable()">Edit</button>
-          <input type="submit" class="form-submit" value="Save" onClick="updateDatabase()" />
+          <button class="form-submit" id="edit" onclick="makeMeEditable()">Edit</button>
+          <input type="submit" id="save" class="form-submit" value="Save" onClick="updateDatabase()" hidden="true"/>
         </div>
       </form>
     </div>
@@ -124,6 +124,11 @@
         let stuYogh4 = document.getElementById("student_yog_h4");
         let stuChooseImg = document.getElementById("stuChooseImage");
         stuChooseImg.removeAttribute("hidden");
+
+        let save = document.getElementById("save");
+        let edit = document.getElementById("edit");
+        save.removeAttribute("hidden");
+        edit.setAttribute("hidden", "true");
         h4.setAttribute("hidden", "true");
         input.removeAttribute("hidden");
         stuEmailh4.setAttribute("hidden", "true");
