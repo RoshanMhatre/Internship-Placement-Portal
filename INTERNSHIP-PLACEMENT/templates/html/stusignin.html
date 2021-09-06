@@ -119,6 +119,16 @@
       </div>`;
       };
     </script>
+    {% endif %} {% if mess1 %}
+    <script>
+      window.onload = function () {
+        var message = document.getElementById("msg");
+        message.innerHTML = `<div class="alert alert-success alert-dismissible fade show fixed-top" role="alert">
+      <strong> Success!!: </strong>{{ mess1 }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`;
+      };
+    </script>
     {% endif %}
   </body>
 </html>

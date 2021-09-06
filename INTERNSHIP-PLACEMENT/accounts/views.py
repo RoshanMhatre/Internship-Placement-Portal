@@ -10,6 +10,7 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+from django_email_verification import send_email
 
 
 # Create your views here.
@@ -42,10 +43,14 @@ def stusignup(request):
             else:
                 user = User.objects.create_user(email=email,
                                                 username=username, password=password1)
+                user.is_active = False  # Example
+                send_email(user)
                 suser = studentUser(username=username, yourname=yourname,
                                     email=email, yog=yog, contact=contact, branch=branch, user=user)
+                # Example
                 suser.save()
-                return redirect('/stusignin')
+                mess1 = "Please check your mail inbox to verify your account."
+                return render(request, 'stusignin.html', {'mess1': mess1})
         else:
             mess = "Password is incorrect."
             return render(request, 'stusignup.html', {'mess': mess})

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Confirmation</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}" />
+  </head>
+  <body style="background: url(../static/images/body_bg.png)">
+    <div class="card text-center">
+      <div class="card-header">Email Verification</div>
+      {% if success %}
+      <div class="card-body">
+        <h5 class="card-title">Confirmation</h5>
+        <p class="card-text">{{ user.username }}, your account is confirmed!</p>
+        <br /><br />
+        <a href="/" class="form-submit">Home</a>
+      </div>
+      {% else %}
+      <div class="card-body">
+        <h5 class="card-title">Confirmation</h5>
+        <p class="card-text">Error, invalid token!</p>
+        <br /><br />
+        <a href="/" class="form-submit">Home</a>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
