@@ -129,88 +129,93 @@ def stuinternshipcount(user, iObj):
 @register.filter(name="placementStatus")
 def placementStatus(user, id):
     try:
-       studentUsername = studentUser.objects.get(user=user)
-       placementId = placementInfo.objects.get(id=id)
-       stuPlaceObj = Student_placement.objects.get(
-       student_username=studentUsername, placement_id=placementId)
-       if (stuPlaceObj.status):
-           return True
-       else:
-           return False
+        studentUsername = studentUser.objects.get(user=user)
+        placementId = placementInfo.objects.get(id=id)
+        stuPlaceObj = Student_placement.objects.get(
+            student_username=studentUsername, placement_id=placementId)
+        if (stuPlaceObj.status):
+            return True
+        else:
+            return False
     except:
-       return False
+        return False
+
 
 @register.filter(name="internshipStatus")
 def internshipStatus(user, id):
-   try:
-       studentUsername = studentUser.objects.get(user=user)
-       internshipId = internshipInfo.objects.get(id=id)
-       stuInternObj = Student_internship.objects.get(
-       student_username=studentUsername, internship_id=internshipId)
-       if (stuInternObj.status):
-           return True
-       else:
-           return False
-   except:
-       return False
+    try:
+        studentUsername = studentUser.objects.get(user=user)
+        internshipId = internshipInfo.objects.get(id=id)
+        stuInternObj = Student_internship.objects.get(
+            student_username=studentUsername, internship_id=internshipId)
+        if (stuInternObj.status):
+            return True
+        else:
+            return False
+    except:
+        return False
+
 
 @register.filter(name="pendingintern")
-def pendingintern(user,id):
+def pendingintern(user, id):
     try:
-       studentUsername = studentUser.objects.get(user=user)
-       internshipId = internshipInfo.objects.get(id=id)
-       stuInternObj = Student_internship.objects.get(
-       student_username=studentUsername, internship_id=internshipId)
-       if (stuInternObj.pending):
-           return True
-       else:
-           return False
+        studentUsername = studentUser.objects.get(user=user)
+        internshipId = internshipInfo.objects.get(id=id)
+        stuInternObj = Student_internship.objects.get(
+            student_username=studentUsername, internship_id=internshipId)
+        if (stuInternObj.pending):
+            return True
+        else:
+            return False
     except:
-       return False
+        return False
+
 
 @register.filter(name="pendingplace")
 def pendingplace(user, id):
     try:
-       studentUsername = studentUser.objects.get(user=user)
-       placementId = placementInfo.objects.get(id=id)
-       stuPlaceObj = Student_placement.objects.get(
-       student_username=studentUsername, placement_id=placementId)
-       if (stuPlaceObj.pending):
-           return True
-       else:
-           return False
+        studentUsername = studentUser.objects.get(user=user)
+        placementId = placementInfo.objects.get(id=id)
+        stuPlaceObj = Student_placement.objects.get(
+            student_username=studentUsername, placement_id=placementId)
+        if (stuPlaceObj.pending):
+            return True
+        else:
+            return False
     except:
-       return False
+        return False
+
 
 @register.filter(name="stucount")
 def stucount(user, id):
-    c=0
+    c = 0
     try:
         studentUsername = studentUser.objects.get(user=user)
         try:
             stuPlaceObj = Student_placement.objects.all()
             for s in stuPlaceObj:
                 if s.student_username == studentUsername and s.status == True:
-                    c+=1
+                    c += 1
         except:
-            c+=0
+            c += 0
         try:
             stuInternObj = Student_internship.objects.all()
             for s in stuInternObj:
                 if s.student_username == studentUsername and s.status == True:
-                    c+=1
+                    c += 1
         except:
-            c+=0
+            c += 0
         return c
 
     except:
         return 0
 
+
 @register.filter(name="notapplied")
 def notapplied(user, id):
     c = 0
     c1 = 0
-    pObj= placementInfo.objects.all()
+    pObj = placementInfo.objects.all()
     iObj = internshipInfo.objects.all()
     for p in pObj:
         if p.status:
@@ -220,4 +225,19 @@ def notapplied(user, id):
             c += 1
     c1 = stucount(user, id)
     return c-c1
-    
+
+
+# @register.filter(name="studentLinkInternship")
+# def studentLinkInternship(sObj, id):
+#     print(sObj, type(id))
+#     # try:
+#     siObj = sObj.filter(internship_id=id)
+#     print(siObj)
+#     for i in siObj:
+#         return i.student_username
+#     # except(e):
+#     #     print(e)
+#     #     print("Error aaya hai")
+#     # # print(siObj)
+#     # finally:
+#     #     return True

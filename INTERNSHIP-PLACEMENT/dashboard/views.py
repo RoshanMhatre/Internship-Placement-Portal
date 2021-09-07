@@ -79,11 +79,26 @@ def stuall(request):
 def comdashboard(request):
     suser = studentUser.objects.all()
     cuser = companyUser.objects.all()
-
     id = companyUser.objects.only('id').get(username=request.user.username).id
     iObj = internshipInfo.internship_by_id(id)
     pObj = placementInfo.placement_by_id(id)
-    return render(request, 'comdashboard.html', {'suser': suser, 'cuser': cuser, 'pObj': pObj, 'iObj': iObj})
+    studentIntern = []
+    studentPlace = []
+    for i in iObj:
+        siObj = Student_internship.objects.filter(
+            internship_id=i, status=True, pending=True)
+        if siObj.exists():
+            studentIntern.append(siObj)
+    for i in pObj:
+        spObj = Student_placement.objects.filter(
+            placement_id=i, status=True, pending=True)
+        if spObj.exists():
+            studentPlace.append(spObj)
+    print(studentIntern, studentPlace)
+    # for item in studentIntern:
+    #     for querySet in item:
+    #         print(querySet.student_username)
+    return render(request, 'comdashboard.html', {'suser': suser, 'cuser': cuser, 'pObj': pObj, 'iObj': iObj, 'studentIntern': studentIntern, 'studentPlace': studentPlace})
 
 
 @login_required(login_url="/comsignin")

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ekwebkr7*39j&=&vz@u!m=w3zj+n1bpjii2m9xvxo0i8556%5%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -148,7 +148,7 @@ EMAIL_MAIL_HTML = 'mail_body.html'
 EMAIL_MAIL_PLAIN = 'mail_body.txt'
 EMAIL_TOKEN_LIFE = 60 * 60
 EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
-EMAIL_PAGE_DOMAIN = 'http://localhost:8000'
+EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -19,7 +19,6 @@ class placementInfo(models.Model):
         default='https://forms.gle/VNgHt2XeRaDn65Wv6')
     status = models.BooleanField(default=False)
 
-
     @staticmethod
     def placement_by_id(ids):
         if ids:
@@ -67,6 +66,13 @@ class Student_placement(models.Model):
     status = models.BooleanField(default=False)
     pending = models.BooleanField(default=False)
 
+    @staticmethod
+    def placement_by_id(ids):
+        if ids:
+            return Student_placement.objects.filter(placement_id=ids)
+        else:
+            return Student_placement.objects.all()
+
 
 class Student_internship(models.Model):
     student_username = models.ForeignKey(
@@ -75,3 +81,10 @@ class Student_internship(models.Model):
         internshipInfo, default=None, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
     pending = models.BooleanField(default=False)
+
+    @staticmethod
+    def internship_by_id(ids):
+        if ids:
+            return Student_internship.objects.filter(internship_id=ids)
+        else:
+            return Student_internship.objects.all()
