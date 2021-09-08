@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from .models import studentUser, companyUser
 from django_email_verification import send_email
-import time
-import sched
+from threading import Timer
 
 # Create your views here.
 
@@ -12,6 +11,14 @@ def index(request):
     suser = studentUser.objects.all()
     cuser = companyUser.objects.all()
     return render(request, 'index.html', {'suser': suser, 'cuser': cuser})
+
+
+def selfDestruct(username):
+    user = User.objects.get(username=username)
+    if user.is_active == True:
+        pass
+    else:
+        user.delete()
 
 
 def stusignup(request):
@@ -35,12 +42,15 @@ def stusignup(request):
             else:
                 user = User.objects.create_user(email=email,
                                                 username=username, password=password1)
+                user1 = User.objects.get(username=username)
+                t = Timer(900.0, selfDestruct, [user1.username])
+                t.start()
                 user.is_active = False  # Example
                 send_email(user)
                 suser = studentUser(username=username, yourname=yourname,
                                     email=email, yog=yog, contact=contact, branch=branch, user=user)
                 suser.save()
-                mess1 = "Please check your mail inbox to verify your account."
+                mess1 = "Please check your mail inbox to verify your account. Link will expire in 15 mins"
                 return render(request, 'stusignin.html', {'mess1': mess1})
         else:
             mess = "Password is incorrect."
