@@ -133,10 +133,16 @@ def comsignup(request):
             else:
                 user = User.objects.create_user(email=companyemail,
                                                 username=username, password=password1)
+                user1 = User.objects.get(username=username)
+                t = Timer(900.0, selfDestruct, [user1.username])
+                t.start()
+                user.is_active = False  # Example
+                send_email(user)
                 cuser = companyUser(username=username, companyname=companyname,
                                     companyemail=companyemail, contact=contact, address=address, user=user)
                 cuser.save()
-                return redirect('/comsignin')
+                mess1 = "Please check your mail inbox to verify your account. Link will expire in 15 mins"
+                return render(request, 'comsignin.html', {'mess1': mess1})
         else:
             mess = "Password is incorrect."
             return render(request, 'comsignup.html', {'mess': mess})
