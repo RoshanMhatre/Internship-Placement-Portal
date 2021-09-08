@@ -1,17 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from .models import studentUser, companyUser
-from django.contrib import messages
-from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse
-from django.contrib.auth.forms import PasswordResetForm
-from django.template.loader import render_to_string
-from django.db.models.query_utils import Q
-from django.utils.http import urlsafe_base64_encode
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.encoding import force_bytes
 from django_email_verification import send_email
-
+import time
+import sched
 
 # Create your views here.
 
@@ -47,7 +39,6 @@ def stusignup(request):
                 send_email(user)
                 suser = studentUser(username=username, yourname=yourname,
                                     email=email, yog=yog, contact=contact, branch=branch, user=user)
-                # Example
                 suser.save()
                 mess1 = "Please check your mail inbox to verify your account."
                 return render(request, 'stusignin.html', {'mess1': mess1})

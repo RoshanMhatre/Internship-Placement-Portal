@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link
       rel="icon"
       type="image/png"
@@ -148,22 +149,18 @@
                       {% for item in studentIntern %}
                       {% for querySet in item %}
                       <tr>
-                        <td>{{ querySet.student_username }}</td>
-                        <td>Web Dev</td>
-                        <td>
-                          Internship
-                        </td>
+                        <td>{{ querySet.student_username|getStudentName:suser }}</td>
+                          <td>{{ querySet.internship_id|getInternDomainName:suser }}</td>
+                        <td><a href="/dashboard/cominternship#{{ querySet.internship_id }}" style="text-decoration: none; color: black">Internship</td>
                       </tr>
                       {% endfor %}
                       {% endfor %}
                       {% for item in studentPlace %}
                       {% for querySet in item %}
                       <tr>
-                        <td>{{ querySet.student_username }}</td>
-                        <td>Web Dev</td>
-                        <td>
-                          Placement
-                        </td>
+                        <td>{{ querySet.student_username|getStudentName:suser }}</td>
+                        <td>{{ querySet.placement_id|getPlaceDomainName:suser }}</td>
+                        <td><a href="/dashboard/complacement#{{ querySet.placement_id }}" style="text-decoration: none; color: black">Placement</td>
                       </tr>
                       {% endfor %}
                       {% endfor %}
@@ -176,6 +173,9 @@
         </div>
       </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
     {% endblock %}
   </body>
 </html>

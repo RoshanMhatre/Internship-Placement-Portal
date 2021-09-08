@@ -227,6 +227,30 @@ def notapplied(user, id):
     return c-c1
 
 
+@register.filter(name="getStudentName")
+def getStudentName(student_username, user):
+    sObj = studentUser.objects.all()
+    for s in sObj:
+        if s == student_username:
+            return s.yourname
+
+
+@register.filter(name="getInternDomainName")
+def getInternDomainName(id, user):
+    ciObj = internshipInfo.objects.all()
+    for c in ciObj:
+        if c == id:
+            return c.domain
+
+
+@register.filter(name="getPlaceDomainName")
+def getPlaceDomainName(id, user):
+    cpObj = placementInfo.objects.all()
+    for c in cpObj:
+        if c == id:
+            return c.domain
+
+
 # @register.filter(name="studentLinkInternship")
 # def studentLinkInternship(sObj, id):
 #     print(sObj, type(id))

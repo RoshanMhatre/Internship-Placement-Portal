@@ -94,7 +94,6 @@ def comdashboard(request):
             placement_id=i, status=True, pending=True)
         if spObj.exists():
             studentPlace.append(spObj)
-    print(studentIntern, studentPlace)
     # for item in studentIntern:
     #     for querySet in item:
     #         print(querySet.student_username)
