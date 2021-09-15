@@ -206,7 +206,7 @@ figure {
 }
 .form-group {
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
   overflow: hidden;
 }
 .form-group:last-child {

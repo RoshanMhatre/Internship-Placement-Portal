@@ -11,15 +11,10 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-      crossorigin="anonymous"
-    ></script>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="{% static 'css/signin.css' %}" />
@@ -63,6 +58,20 @@
                     required
                   />
                 </div>
+                <div
+                  class="valid-name"
+                  style="color: hsl(120, 100%, 35%); margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Valid Name!</b>
+                </div>
+                <div
+                  class="invalid-name"
+                  style="color: red; margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Please enter valid name!</b>
+                </div>
                 <div class="form-group">
                   <label for="username"
                     ><i
@@ -77,6 +86,20 @@
                     placeholder="Username"
                     required
                   />
+                </div>
+                <div
+                  class="valid-username"
+                  style="color: hsl(120, 100%, 35%); margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Valid Username!</b>
+                </div>
+                <div
+                  class="invalid-username"
+                  style="color: red; margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Please enter valid username(4-10 characters)!</b>
                 </div>
                 <div class="form-group">
                   <label for="email"
@@ -130,6 +153,20 @@
                     placeholder="Year of Graduation"
                     required
                   />
+                </div>
+                <div
+                  class="valid-yog"
+                  style="color: hsl(120, 100%, 35%); margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Valid Year!</b>
+                </div>
+                <div
+                  class="invalid-yog"
+                  style="color: red; margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Please enter valid year!</b>
                 </div>
                 <div class="form-group">
                   <label for="contact"
@@ -212,4 +249,71 @@
     </script>
     {% endif %}
   </body>
+  <script>
+    let name = document.getElementById("name");
+    let validname = document.getElementsByClassName("valid-name");
+    let invalidname = document.getElementsByClassName("invalid-name");
+    let username = document.getElementById("username");
+    let validusername = document.getElementsByClassName("valid-username");
+    let invalidusername = document.getElementsByClassName("invalid-username");
+    let yog = document.getElementById("yog");
+    let validyog = document.getElementsByClassName("valid-yog");
+    let invalidyog = document.getElementsByClassName("invalid-yog");
+    name.addEventListener("input", () => {
+      let regex = /^([a-zA-Z ])+$/;
+      let str = name.value;
+      if (regex.test(str)) {
+        validname[0].removeAttribute("hidden");
+        invalidname[0].setAttribute("hidden", "true");
+        name.style.borderBottom = "1px solid lightgreen";
+      } else {
+        validname[0].setAttribute("hidden", "true");
+        invalidname[0].removeAttribute("hidden");
+        name.style.borderBottom = "1px solid red";
+      }
+    });
+    username.addEventListener("input", () => {
+      let regex = /^([a-zA-Z])([a-zA-Z0-9]){3,9}$/;
+      let str = username.value;
+      if (regex.test(str)) {
+        validusername[0].removeAttribute("hidden");
+        invalidusername[0].setAttribute("hidden", "true");
+        username.style.borderBottom = "1px solid lightgreen";
+      } else {
+        validusername[0].setAttribute("hidden", "true");
+        invalidusername[0].removeAttribute("hidden");
+        username.style.borderBottom = "1px solid red";
+      }
+    });
+    yog.addEventListener("input", () => {
+      let regex = /^2([0-9]){3}$/;
+      let str = yog.value;
+      if (regex.test(str)) {
+        validyog[0].removeAttribute("hidden");
+        invalidyog[0].setAttribute("hidden", "true");
+        yog.style.borderBottom = "1px solid lightgreen";
+      } else {
+        validyog[0].setAttribute("hidden", "true");
+        invalidyog[0].removeAttribute("hidden");
+        yog.style.borderBottom = "1px solid red";
+      }
+    });
+  </script>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
 </html>
