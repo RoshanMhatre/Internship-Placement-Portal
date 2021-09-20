@@ -11,6 +11,7 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -183,6 +184,20 @@
                     required
                   />
                 </div>
+                <div
+                  class="valid-phone"
+                  style="color: hsl(120, 100%, 35%); margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Valid Phone Number!</b>
+                </div>
+                <div
+                  class="invalid-phone"
+                  style="color: red; margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Please enter valid phone number!</b>
+                </div>
                 <div class="form-group">
                   <label for="pass"
                     ><i class="zmdi zmdi-lock fa fa-lock" area-hidden="true"></i
@@ -195,13 +210,27 @@
                     required
                   />
                 </div>
+                <div
+                  class="valid-pass"
+                  style="color: hsl(120, 100%, 35%); margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Valid Password!</b>
+                </div>
+                <div
+                  class="invalid-pass"
+                  style="color: red; margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Please enter 8-16 character (Ex:Vit@12345)</b>
+                </div>
                 <div class="form-group">
                   <label for="re-pass"
                     ><i
                       class="zmdi zmdi-lock-outline fa fa-lock"
                       area-hidden="true"
                     ></i
-                  ></label>
+                  ><i class="bi bi-eye-slash" id="togglePassword" style="margin-right: 0px;"></i></label>
                   <input
                     type="password"
                     name="re_pass"
@@ -209,6 +238,7 @@
                     placeholder="Confirm Password"
                     required
                   />
+                  
                 </div>
 
                 <div class="form-group form-button">
@@ -259,6 +289,12 @@
     let yog = document.getElementById("yog");
     let validyog = document.getElementsByClassName("valid-yog");
     let invalidyog = document.getElementsByClassName("invalid-yog");
+    let contact = document.getElementById("contact");
+    let validcontact = document.getElementsByClassName("valid-phone");
+    let invalidcontact = document.getElementsByClassName("invalid-phone");
+    let password = document.getElementById("pass");
+    let validpass = document.getElementsByClassName("valid-pass");
+    let invalidpass = document.getElementsByClassName("invalid-pass");
     name.addEventListener("input", () => {
       let regex = /^([a-zA-Z ])+$/;
       let str = name.value;
@@ -270,6 +306,32 @@
         validname[0].setAttribute("hidden", "true");
         invalidname[0].removeAttribute("hidden");
         name.style.borderBottom = "1px solid red";
+      }
+    });
+    password.addEventListener("input", () => {
+      let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+      let str = password.value;
+      if (regex.test(str)) {
+        validpass[0].removeAttribute("hidden");
+        invalidpass[0].setAttribute("hidden", "true");
+        password.style.borderBottom = "1px solid lightgreen";
+      } else {
+        validpass[0].setAttribute("hidden", "true");
+        invalidpass[0].removeAttribute("hidden");
+        password.style.borderBottom = "1px solid red";
+      }
+    });
+    contact.addEventListener("input", () => {
+      let regex = /^[0-9]([0-9]){9}$/;
+      let str = contact.value;
+      if (regex.test(str)) {
+        validcontact[0].removeAttribute("hidden");
+        invalidcontact[0].setAttribute("hidden", "true");
+        contact.style.borderBottom = "1px solid lightgreen";
+      } else {
+        validcontact[0].setAttribute("hidden", "true");
+        invalidcontact[0].removeAttribute("hidden");
+        contact.style.borderBottom = "1px solid red";
       }
     });
     username.addEventListener("input", () => {
