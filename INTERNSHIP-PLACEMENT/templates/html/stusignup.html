@@ -187,6 +187,20 @@
                     required
                   />
                 </div>
+                <div
+                  class="valid-phone"
+                  style="color: hsl(120, 100%, 35%); margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Valid Phone Number!</b>
+                </div>
+                <div
+                  class="invalid-phone"
+                  style="color: red; margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Please enter valid phone number!</b>
+                </div>
                 <div class="form-group">
                   <label for="pass"
                     ><i class="zmdi zmdi-lock fa fa-lock" area-hidden="true"></i
@@ -198,6 +212,20 @@
                     placeholder="Password"
                     required
                   />
+                </div>
+                <div
+                  class="valid-pass"
+                  style="color: hsl(120, 100%, 35%); margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Valid Password!</b>
+                </div>
+                <div
+                  class="invalid-pass"
+                  style="color: red; margin-bottom: 8px"
+                  hidden="true"
+                >
+                  <b>Please enter 8-16 character (Ex:Vit@12345)</b>
                 </div>
                 <div class="form-group">
                   <label for="re-pass"
@@ -268,6 +296,12 @@
     let yog = document.getElementById("yog");
     let validyog = document.getElementsByClassName("valid-yog");
     let invalidyog = document.getElementsByClassName("invalid-yog");
+    let contact = document.getElementById("contact");
+    let validcontact = document.getElementsByClassName("valid-phone");
+    let invalidcontact = document.getElementsByClassName("invalid-phone");
+    let password = document.getElementById("pass");
+    let validpass = document.getElementsByClassName("valid-pass");
+    let invalidpass = document.getElementsByClassName("invalid-pass");
     name.addEventListener("input", () => {
       let regex = /^([a-zA-Z ])+$/;
       let str = name.value;
